@@ -6,8 +6,8 @@ object PiggyBank {
     fun putMoney(money: Money) {
         if (isBroken) println("Вы разбили копилку, вы больше ничего положить туда не можете") // проверьте, не разбита ли копилка
         else {
-            moneys.add(money)
             println("Добавлено в копилку $money")
+            moneys.add(money)
         }  // добавьте монетку в копилку
     }
 
@@ -19,12 +19,12 @@ object PiggyBank {
                 if (coin.isCoin) {
                     moneys.remove(coin)
                     return coin
-                } else moneyIterator.hasNext()
+                } else  moneyIterator.hasNext()
             }
             return null // вытрясти монетку из копилки (если в копилке нет монетки, вернуть null). Помните, купюры вытрясти нельзя.
         } else {
-            println("Вы разбили копилку, больше оттуда ничего не вытрясти")
             return null
+            println("Вы разбили копилку, больше оттуда ничего не вытрясти")
         }
     }
 
