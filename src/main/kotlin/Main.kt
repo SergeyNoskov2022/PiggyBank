@@ -13,18 +13,18 @@ object PiggyBank {
 
     fun shake(): Money? {
         if (isBroken) { // проверьте, не разбита ли копилка
-            val moneyIterator = moneys.iterator()
-            while (moneyIterator.hasNext()) {
-                val coin = moneyIterator.next()
+            val iterator = moneys.iterator()
+            while (iterator.hasNext()) {
+                val coin = iterator.next()
                 if (coin.isCoin) {
                     moneys.remove(coin)
                     return coin
-                } else  moneyIterator.hasNext()
+                }
             }
             return null // вытрясти монетку из копилки (если в копилке нет монетки, вернуть null). Помните, купюры вытрясти нельзя.
         } else {
-            return null
             println("Вы разбили копилку, больше оттуда ничего не вытрясти")
+            return null
         }
     }
 
