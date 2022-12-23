@@ -12,7 +12,7 @@ object PiggyBank {
     }
 
     fun shake(): Money? {
-        if (isBroken) { // проверьте, не разбита ли копилка
+        if (isBroken) {
             val iterator = moneys.iterator()
             while (iterator.hasNext()) {
                 val coin = iterator.next()
@@ -23,14 +23,14 @@ object PiggyBank {
             }
             return null // вытрясти монетку из копилки (если в копилке нет монетки, вернуть null). Помните, купюры вытрясти нельзя.
         } else {
-            println("Вы разбили копилку, больше оттуда ничего не вытрясти")
             return null
+            println("Вы разбили копилку, больше оттуда ничего не вытрясти")
         }
     }
 
     fun smash(): ArrayList<Money> {
+        isBroken = true
         println("Копилка разбита, вы достали оттуда: $moneys")
-        isBroken == true
         return moneys      // установить флаг, что копилка разбита true, и вернуть все монетки, которые были в копилке
     }
 }
