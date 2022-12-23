@@ -5,25 +5,32 @@ object PiggyBank {
 
     fun putMoney(money: Money) {
         if (isBroken) println("Вы разбили копилку, вы больше ничего положить туда не можете") // проверьте, не разбита ли копилка
-            else {
-                moneys.add(money)
-                println("Добавлено в копилку $money")
+        else {
+            moneys.add(money)
+            println("Добавлено в копилку $money")
         }  // добавьте монетку в копилку
     }
 
     fun shake(): Money? {
         if (isBroken) { // проверьте, не разбита ли копилка
             val moneyIterator = moneys.iterator()
-            if (moneyIterator.next().isCoin) {
-                moneyIterator.remove()
-            } else return null // вытрясти монетку из копилки (если в копилке нет монетки, вернуть null). Помните, купюры вытрясти нельзя.
-        } else println("Вы разбили копилку, больше оттуда ничего не вытрясти")
-        return null
+            while (moneyIterator.hasNext()) {
+                val coin = moneyIterator.next()
+                if (coin.isCoin) {
+                    moneys.remove(coin)
+                    return coin
+                } else moneyIterator.hasNext()
+            }
+            return null // вытрясти монетку из копилки (если в копилке нет монетки, вернуть null). Помните, купюры вытрясти нельзя.
+        } else {
+            println("Вы разбили копилку, больше оттуда ничего не вытрясти")
+            return null
+        }
     }
 
     fun smash(): ArrayList<Money> {
         println("Копилка разбита, вы достали оттуда: $moneys")
-        isBroken = true
+        isBroken == true
         return moneys      // установить флаг, что копилка разбита true, и вернуть все монетки, которые были в копилке
     }
 }
@@ -35,7 +42,7 @@ class Money private constructor(
     companion object {
         val coins_10 = Money(0.1f, true)
         val coins_50 = Money(0.5f, true)
-        val coins_100 = Money(1f, true)
+        val coins_100 = Money(1.0f, true)
         val bill_50 = Money(50f, false)
         val bill_100 = Money(100f, false)
         val bill_500 = Money(500f, false)
